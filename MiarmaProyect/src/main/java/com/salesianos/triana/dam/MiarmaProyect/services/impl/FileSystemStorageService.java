@@ -1,11 +1,11 @@
 package com.salesianos.triana.dam.MiarmaProyect.services.impl;
 
-
 import com.salesianos.triana.dam.MiarmaProyect.config.StorageProperties;
 import com.salesianos.triana.dam.MiarmaProyect.exception.FileNotFoundException;
 import com.salesianos.triana.dam.MiarmaProyect.exception.StorageException;
 import com.salesianos.triana.dam.MiarmaProyect.services.StorageService;
 import com.salesianos.triana.dam.MiarmaProyect.utils.MediaTypeUrlResource;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
@@ -50,11 +50,13 @@ public class FileSystemStorageService implements StorageService {
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         String newFilename = "";
         try {
+            // Si el fichero está vacío, excepción al canto
             if (file.isEmpty())
                 throw new StorageException("El fichero subido está vacío");
 
             newFilename = filename;
             while(Files.exists(rootLocation.resolve(newFilename))) {
+                // Tratamos de generar uno nuevo
                 String extension = StringUtils.getFilenameExtension(newFilename);
                 String name = newFilename.replace("."+extension,"");
 

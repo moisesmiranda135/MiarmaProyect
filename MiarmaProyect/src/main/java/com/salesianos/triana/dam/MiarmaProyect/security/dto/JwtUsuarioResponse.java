@@ -7,11 +7,13 @@ import lombok.*;
 @Builder
 public class JwtUsuarioResponse {
 
+    private String nickName;
     private String email;
     private String nombre;
     private String apellidos;
+    private String presentacion;
     private String avatar;
-    private String role;
+    private String isPublic;
     private String token;
 
 }

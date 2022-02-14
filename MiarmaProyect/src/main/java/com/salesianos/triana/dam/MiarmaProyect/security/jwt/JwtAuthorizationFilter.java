@@ -1,6 +1,7 @@
 package com.salesianos.triana.dam.MiarmaProyect.security.jwt;
 
 
+import com.salesianos.triana.dam.MiarmaProyect.users.models.Roles;
 import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
 import com.salesianos.triana.dam.MiarmaProyect.users.services.UsuarioService;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
                                     user,
+                                    user.getRol(),
                                     user.getAuthorities()
                             );
                     authentication.setDetails(new WebAuthenticationDetails(request));

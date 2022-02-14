@@ -1,5 +1,6 @@
 package com.salesianos.triana.dam.MiarmaProyect.model;
 
+import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
 import lombok.*;
 
 import javax.persistence.*;
@@ -22,5 +23,10 @@ public class Publicaciones {
     private String descripcion;
 
     private String imagen;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    private boolean isPublic;
 
 }

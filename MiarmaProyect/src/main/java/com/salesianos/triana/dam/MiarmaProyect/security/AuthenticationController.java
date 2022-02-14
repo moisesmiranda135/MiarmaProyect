@@ -57,11 +57,13 @@ public class AuthenticationController {
 
     private JwtUsuarioResponse convertUserToJwtUserResponse(Usuario u, String jwt) {
         return JwtUsuarioResponse.builder()
+                .nickName(u.getNickName())
                 .nombre(u.getNombre())
                 .apellidos(u.getApellidos())
                 .email(u.getEmail())
+                .presentacion(u.getPresentacion())
                 .avatar(u.getAvatar())
-                .role(String.valueOf(u.isPublic()))
+                .isPublic(String.valueOf(u.isPublic()))
                 .token(jwt)
                 .build();
     }

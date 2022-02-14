@@ -21,7 +21,7 @@ public class UserController {
     private final UsuarioDtoConverter usuarioDtoConverter;
 
     @PostMapping("/auth/register/")
-    public ResponseEntity<GetUsuarioDto> nuevoPropietario(@RequestPart CreateUsuarioDto newUser, @RequestPart("file") MultipartFile file) {
+    public ResponseEntity<GetUsuarioDto> nuevoPropietario(@RequestPart("json") CreateUsuarioDto newUser, @RequestPart("file") MultipartFile file) {
         Usuario saved = usuarioEntityService.save(newUser, file);
 
         if (saved == null)

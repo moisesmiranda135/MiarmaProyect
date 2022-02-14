@@ -1,5 +1,6 @@
 package com.salesianos.triana.dam.MiarmaProyect.users.models;
 
+import com.salesianos.triana.dam.MiarmaProyect.model.Publicaciones;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -35,9 +36,13 @@ public class Usuario implements UserDetails {
 
     private String password;
 
-    private List<Usuario> seguidores;
 
-    private List<Usuario> peticiones;
+    @Enumerated(EnumType.STRING)
+    private Roles rol;
+
+
+    @OneToMany
+    private List<Publicaciones> publicaciones;
 
     private boolean isPublic;
 
