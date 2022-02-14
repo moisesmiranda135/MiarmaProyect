@@ -2,6 +2,7 @@ package com.salesianos.triana.dam.MiarmaProyect.users.services;
 
 
 
+import com.salesianos.triana.dam.MiarmaProyect.services.StorageService;
 import com.salesianos.triana.dam.MiarmaProyect.services.base.BaseService;
 import com.salesianos.triana.dam.MiarmaProyect.users.dto.CreateUsuarioDto;
 import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
@@ -12,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -22,6 +25,7 @@ import java.util.Optional;
 public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository> implements UserDetailsService {
 
     private final PasswordEncoder passwordEncoder;
+    private final StorageService storageService;
 
 
     @Override
@@ -36,11 +40,19 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
     }
 
 
-    public Usuario savePublicUser(CreateUsuarioDto nuevoUsuario) {
+    public Usuario save(CreateUsuarioDto nuevoUsuario, MultipartFile file) {
         if (nuevoUsuario.getPassword().contentEquals(nuevoUsuario.getPassword2())) {
+
+            String filename = storageService.store(file);
+
+            String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/download/")
+                    .path(filename)
+                    .toUriString();
+
             Usuario usuario = Usuario.builder()
                     .password(passwordEncoder.encode(nuevoUsuario.getPassword()))
-                    .avatar(nuevoUsuario.getAvatar())
+                    .avatar(uri)
                     .nombre(nuevoUsuario.getNombre())
                     .apellidos(nuevoUsuario.getApellidos())
                     .email(nuevoUsuario.getEmail())
@@ -53,7 +65,6 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
             return null;
         }
     }
-
 
 
     @PostConstruct
