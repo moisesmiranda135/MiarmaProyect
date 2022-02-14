@@ -1,0 +1,10 @@
+{
+    "nombre":"Moisés",
+    "apellidos":"Miranda Corrales",
+    "email":"moisesmiranda135@gmail.com",
+    "password":"12345",
+    "password2":"12345",
+    "nickName":"moimiranda98",
+    "presentacion":"hola a todos",
+    "isPublic":true
+}
