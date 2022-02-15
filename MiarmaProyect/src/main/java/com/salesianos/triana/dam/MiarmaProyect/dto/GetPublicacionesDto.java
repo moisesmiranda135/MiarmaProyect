@@ -1,20 +1,17 @@
 package com.salesianos.triana.dam.MiarmaProyect.dto;
 
-
 import lombok.*;
-
-import javax.persistence.Lob;
-
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreatePublicacionesDto {
+public class GetPublicacionesDto {
 
     private String titulo;
     private String descripcion;
-    private String nickName;
+    private String imagen;
+    private String propietario_nickName;
     private boolean isPublic;
 }

@@ -2,6 +2,8 @@ package com.salesianos.triana.dam.MiarmaProyect.users.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,6 +17,7 @@ public class GetUsuarioDto {
     private String email;
     private String nickName;
     private String presentacion;
+    private LocalDate fechaNacimiento;
     private boolean isPublic;
 
 }

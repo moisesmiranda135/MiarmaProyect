@@ -16,6 +16,7 @@ public class UsuarioDtoConverter {
                 .email(u.getEmail())
                 .isPublic(u.isPublic())
                 .nickName(u.getNickName())
+                .fechaNacimiento(u.getFechaNacimiento())
                 .presentacion(u.getPresentacion())
                 .build();
 

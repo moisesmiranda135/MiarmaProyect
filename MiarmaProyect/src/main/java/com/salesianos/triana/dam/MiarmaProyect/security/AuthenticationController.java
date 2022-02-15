@@ -63,6 +63,7 @@ public class AuthenticationController {
                 .email(u.getEmail())
                 .presentacion(u.getPresentacion())
                 .avatar(u.getAvatar())
+                .fechaNacimiento(u.getFechaNacimiento())
                 .isPublic(String.valueOf(u.isPublic()))
                 .token(jwt)
                 .build();

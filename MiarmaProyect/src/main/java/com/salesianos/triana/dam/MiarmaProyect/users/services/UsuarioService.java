@@ -58,6 +58,7 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
                     .email(nuevoUsuario.getEmail())
                     .nickName(nuevoUsuario.getNickName())
                     .presentacion(nuevoUsuario.getPresentacion())
+                    .fechaNacimiento(nuevoUsuario.getFechaNacimiento())
                     .isPublic(nuevoUsuario.isPublic())
                     .build();
             return save(usuario);

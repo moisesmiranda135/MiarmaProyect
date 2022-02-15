@@ -7,6 +7,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class Usuario implements UserDetails {
     private String avatar;
 
     private String password;
+
+    private LocalDate fechaNacimiento;
 
 
     @Enumerated(EnumType.STRING)

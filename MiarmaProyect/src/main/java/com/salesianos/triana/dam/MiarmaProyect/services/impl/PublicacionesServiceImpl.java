@@ -6,6 +6,7 @@ import com.salesianos.triana.dam.MiarmaProyect.model.Publicaciones;
 import com.salesianos.triana.dam.MiarmaProyect.repos.PublicacionesRepository;
 import com.salesianos.triana.dam.MiarmaProyect.services.PublicacionesService;
 import com.salesianos.triana.dam.MiarmaProyect.services.StorageService;
+import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,7 +22,7 @@ public class PublicacionesServiceImpl implements PublicacionesService {
     private final StorageService storageService;
 
     @Override
-    public Publicaciones save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file) {
+    public Publicaciones save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file, Usuario u) {
 
         String filename = storageService.store(file);
 
@@ -33,6 +34,7 @@ public class PublicacionesServiceImpl implements PublicacionesService {
         return repository.save(Publicaciones.builder()
                 .titulo(createPublicacionesDto.getTitulo())
                 .descripcion(createPublicacionesDto.getDescripcion())
+                .usuario(u)
                 .imagen(uri)
                 .build());
     }
