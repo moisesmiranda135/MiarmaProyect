@@ -15,6 +15,7 @@ public class CreatePublicacionesDto {
 
     private String titulo;
     private String descripcion;
+    private String imagen;
     private String nickName;
     private boolean isPublic;
 }

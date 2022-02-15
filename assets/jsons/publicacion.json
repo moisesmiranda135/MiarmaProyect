@@ -1,5 +1,5 @@
 {
     "titulo":"fotón",
     "descripcion":"Guardadno mi primera foto",
-    "isPublic":true
+    "public": true
 }

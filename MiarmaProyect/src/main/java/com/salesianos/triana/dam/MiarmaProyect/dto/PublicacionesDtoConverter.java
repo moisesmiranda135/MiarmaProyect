@@ -17,4 +17,15 @@ public class PublicacionesDtoConverter {
 
     }
 
+    public CreatePublicacionesDto convertPublicacionesToCreatePublicacionesDto(Publicaciones p) {
+        return CreatePublicacionesDto.builder()
+                .titulo(p.getTitulo())
+                .descripcion(p.getDescripcion())
+                .imagen(p.getImagen())
+                .isPublic(p.isPublic())
+                .nickName(p.getUsuario().getNickName())
+                .build();
+
+    }
+
 }

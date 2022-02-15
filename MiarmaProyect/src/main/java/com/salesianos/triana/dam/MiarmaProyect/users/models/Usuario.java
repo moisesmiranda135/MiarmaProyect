@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -44,8 +45,8 @@ public class Usuario implements UserDetails {
     private Roles rol;
 
 
-    @OneToMany
-    private List<Publicaciones> publicaciones;
+    @OneToMany (fetch = FetchType.EAGER, mappedBy = "usuario")
+    private List<Publicaciones> publicaciones = new ArrayList<>();
 
     private boolean isPublic;
 

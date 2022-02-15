@@ -6,6 +6,7 @@
     "password2":"12345",
     "nickName":"moimiranda98",
     "presentacion":"hola a todos",
-    "fechaNacimiento": "1998-03-01",
-    "isPublic":true
+    "public": true,
+    "fechaNacimiento": "1998-03-01"
+    
 }

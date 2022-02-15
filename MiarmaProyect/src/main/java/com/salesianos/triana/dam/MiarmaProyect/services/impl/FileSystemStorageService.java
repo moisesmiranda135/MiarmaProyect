@@ -1,14 +1,12 @@
 package com.salesianos.triana.dam.MiarmaProyect.services.impl;
 
 import com.salesianos.triana.dam.MiarmaProyect.config.StorageProperties;
-import com.salesianos.triana.dam.MiarmaProyect.exception.FileNotFoundException;
-import com.salesianos.triana.dam.MiarmaProyect.exception.StorageException;
+import com.salesianos.triana.dam.MiarmaProyect.errors.exception.FileNotFoundException;
+import com.salesianos.triana.dam.MiarmaProyect.errors.exception.StorageException;
 import com.salesianos.triana.dam.MiarmaProyect.services.StorageService;
 import com.salesianos.triana.dam.MiarmaProyect.utils.MediaTypeUrlResource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
@@ -120,7 +118,13 @@ public class FileSystemStorageService implements StorageService {
 
     @Override
     public void deleteFile(String filename) {
-        // Pendiente
+        String justFilename = StringUtils.getFilename(filename);
+        try {
+            Path file = load(justFilename);
+            Files.deleteIfExists(file);
+        } catch (IOException e) {
+            throw new StorageException("Error al eliminar un fichero", e);
+        }
     }
 
     @Override

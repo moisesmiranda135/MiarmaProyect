@@ -26,8 +26,13 @@ public class PublicacionesController {
                 .body(publicacionesService.save(newProduct, file, u));
     }
 
-    @GetMapping("/")
+    @GetMapping("/me")
+    public ResponseEntity<?> listMe(@AuthenticationPrincipal Usuario u) {
+        return ResponseEntity.ok(publicacionesService.findAllMe(u));
+    }
+
+    @GetMapping("/public")
     public ResponseEntity<?> list() {
-        return ResponseEntity.ok(publicacionesService.findAll());
+        return ResponseEntity.ok(publicacionesService.findAllPublics());
     }
 }

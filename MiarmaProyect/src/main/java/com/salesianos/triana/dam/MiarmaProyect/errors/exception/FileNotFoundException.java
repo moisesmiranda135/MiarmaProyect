@@ -1,4 +1,4 @@
-package com.salesianos.triana.dam.MiarmaProyect.exception;
+package com.salesianos.triana.dam.MiarmaProyect.errors.exception;
 
 public class FileNotFoundException extends StorageException {
 

@@ -51,7 +51,7 @@ public class AuthenticationController {
 
     @GetMapping("/me")
     public ResponseEntity<?> sobreMi(@AuthenticationPrincipal Usuario u){
-        return ResponseEntity.ok(convertUserToJwtUserResponse(u, null));
+        return ResponseEntity.ok(convertUserToJwtUserResponse(u, "token privado :)"));
     }
 
 
