@@ -8,6 +8,7 @@ public class PublicacionesDtoConverter {
 
     public GetPublicacionesDto convertPublicacionesToGetPublicacionesDto(Publicaciones p) {
         return GetPublicacionesDto.builder()
+                .id(p.getId())
                 .titulo(p.getTitulo())
                 .descripcion(p.getDescripcion())
                 .imagen(p.getImagen())
@@ -19,6 +20,7 @@ public class PublicacionesDtoConverter {
 
     public CreatePublicacionesDto convertPublicacionesToCreatePublicacionesDto(Publicaciones p) {
         return CreatePublicacionesDto.builder()
+                .id(p.getId())
                 .titulo(p.getTitulo())
                 .descripcion(p.getDescripcion())
                 .imagen(p.getImagen())

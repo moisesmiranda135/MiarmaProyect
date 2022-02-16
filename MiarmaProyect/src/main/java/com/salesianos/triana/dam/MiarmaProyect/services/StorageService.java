@@ -13,8 +13,6 @@ public interface StorageService {
 
     String store(MultipartFile file);
 
-    String storeScale(MultipartFile file) throws IOException;
-
     Stream<Path> loadAll();
 
     Path load(String filename);

@@ -22,11 +22,11 @@ public class PublicacionesController {
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestPart("file") MultipartFile file,
-                                    @Valid @RequestPart("json") CreatePublicacionesDto newProduct,
+                                    @Valid @RequestPart("json") CreatePublicacionesDto dto,
                                     @AuthenticationPrincipal Usuario u) throws IOException {
 
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(publicacionesService.save(newProduct, file, u));
+                .body(publicacionesService.save(dto, file, u));
     }
 
     @GetMapping("/me")
@@ -37,5 +37,20 @@ public class PublicacionesController {
     @GetMapping("/public")
     public ResponseEntity<?> list() {
         return ResponseEntity.ok(publicacionesService.findAllPublics());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<CreatePublicacionesDto> edit(@RequestPart("file") MultipartFile file,
+                                                       @Valid @RequestPart("json") CreatePublicacionesDto dto,
+                                                       @AuthenticationPrincipal Usuario u,
+                                                       @PathVariable Long id) {
+
+        return ResponseEntity.ok().body(publicacionesService.edit(dto, id, file, u));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> deletePublicacion(@PathVariable Long id, @AuthenticationPrincipal Usuario u) {
+        publicacionesService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

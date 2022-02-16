@@ -1,6 +1,7 @@
 package com.salesianos.triana.dam.MiarmaProyect.users.models;
 
 import com.salesianos.triana.dam.MiarmaProyect.model.Publicaciones;
+import com.salesianos.triana.dam.MiarmaProyect.model.Seguimiento;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -47,6 +48,12 @@ public class Usuario implements UserDetails {
 
     @OneToMany (fetch = FetchType.EAGER, mappedBy = "usuario")
     private List<Publicaciones> publicaciones = new ArrayList<>();
+
+    @OneToMany( mappedBy = "peticiones")
+    private List<Seguimiento> listaPeticiones = new ArrayList<>();
+
+    @OneToMany( mappedBy = "seguidos")
+    private List<Seguimiento> listaSeguidos = new ArrayList<>();
 
     private boolean isPublic;
 

@@ -14,6 +14,7 @@ import javax.validation.constraints.NotBlank;
 @Builder
 public class CreatePublicacionesDto {
 
+    private Long id;
     @NotBlank(message = "{PUBLICACIONES.nombre.notblank}")
     private String titulo;
     private String descripcion;

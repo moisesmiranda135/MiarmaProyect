@@ -84,53 +84,6 @@ public class FileSystemStorageService implements StorageService {
 
     }
 
-    @Override
-    public String storeScale(MultipartFile file) throws IOException {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
-        String newFilename = "";
-        try {
-            // Si el fichero está vacío, excepción al canto
-            if (file.isEmpty())
-                throw new StorageException("El fichero subido está vacío");
-
-            newFilename = filename;
-            while(Files.exists(rootLocation.resolve(newFilename))) {
-                // Tratamos de generar uno nuevo
-                String extension = StringUtils.getFilenameExtension(newFilename);
-                String name = newFilename.replace("."+extension,"");
-
-                String suffix = Long.toString(System.currentTimeMillis());
-                suffix = suffix.substring(suffix.length()-6);
-
-                newFilename = name + "_" + suffix + "." + extension;
-
-            }
-
-            try (InputStream inputStream = file.getInputStream()) {
-                Files.copy(inputStream, rootLocation.resolve(newFilename),
-                        StandardCopyOption.REPLACE_EXISTING);
-            }
-
-
-
-        } catch (IOException ex) {
-            throw new StorageException("Error en el almacenamiento del fichero: " + newFilename, ex);
-        }
-
-        byte[] byteImg = Files.readAllBytes(Paths.get(String.valueOf(file)));
-
-        BufferedImage original = ImageIO.read(new ByteArrayInputStream(byteImg));
-
-        BufferedImage scaled = Scalr.resize(original, 128);
-
-        OutputStream out = Files.newOutputStream(Paths.get((String.valueOf(file))));
-
-        ImageIO.write(scaled, file.getContentType(), out);
-
-        return filename;
-
-    }
-
 
     @Override
     public Stream<Path> loadAll() {
@@ -167,6 +120,7 @@ public class FileSystemStorageService implements StorageService {
             throw new FileNotFoundException("Could not read file: " + filename, e);
         }
     }
+
 
     @Override
     public void deleteFile(String filename) {

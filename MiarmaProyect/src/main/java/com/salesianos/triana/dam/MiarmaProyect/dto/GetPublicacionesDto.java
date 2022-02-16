@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 public class GetPublicacionesDto {
 
+    private Long id;
     private String titulo;
     private String descripcion;
     private String imagen;
