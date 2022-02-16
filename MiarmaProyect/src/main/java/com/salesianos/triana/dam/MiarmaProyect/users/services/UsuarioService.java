@@ -12,6 +12,7 @@ import com.salesianos.triana.dam.MiarmaProyect.users.dto.UsuarioDtoConverter;
 import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
 import com.salesianos.triana.dam.MiarmaProyect.users.repos.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
+import org.imgscalr.Scalr;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -55,17 +56,17 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
         if (nuevoUsuario.getPassword().contentEquals(nuevoUsuario.getPassword2())) {
 
             String filename = storageService.store(file);
-/*
+
             String extension = StringUtils.getFilenameExtension(filename);
 
             BufferedImage img = ImageIO.read(file.getInputStream());
 
-            BufferedImage scale = storageService.resizer(img, 128);
+            BufferedImage scale = Scalr.resize(img, 128);
 
             OutputStream out = Files.newOutputStream(storageService.load(filename));
 
             ImageIO.write(scale,extension,out);
-*/
+
 
             String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/download/")
