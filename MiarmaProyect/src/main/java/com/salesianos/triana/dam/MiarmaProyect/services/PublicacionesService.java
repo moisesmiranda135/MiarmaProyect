@@ -7,10 +7,11 @@ import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface PublicacionesService {
-    CreatePublicacionesDto save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file, Usuario u);
+    CreatePublicacionesDto save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file, Usuario u) throws IOException;
     List<GetPublicacionesDto> findAllPublics();
     List<GetPublicacionesDto> findAllMe(Usuario u);
 }

@@ -4,6 +4,7 @@ package com.salesianos.triana.dam.MiarmaProyect.dto;
 import lombok.*;
 
 import javax.persistence.Lob;
+import javax.validation.constraints.NotBlank;
 
 
 @Getter
@@ -13,6 +14,7 @@ import javax.persistence.Lob;
 @Builder
 public class CreatePublicacionesDto {
 
+    @NotBlank(message = "{PUBLICACIONES.nombre.notblank}")
     private String titulo;
     private String descripcion;
     private String imagen;

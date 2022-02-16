@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,10 +41,10 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
     }
 
 
-    public Usuario save(CreateUsuarioDto nuevoUsuario, MultipartFile file) {
+    public Usuario save(CreateUsuarioDto nuevoUsuario, MultipartFile file) throws IOException {
         if (nuevoUsuario.getPassword().contentEquals(nuevoUsuario.getPassword2())) {
 
-            String filename = storageService.store(file);
+            String filename = storageService.storeScale(file);
 
             String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
                     .path("/download/")

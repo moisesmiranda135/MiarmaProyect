@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.IOException;
+
 @RestController
 @RequiredArgsConstructor
 public class UserController {
@@ -21,7 +24,7 @@ public class UserController {
     private final UsuarioDtoConverter usuarioDtoConverter;
 
     @PostMapping("/auth/register/")
-    public ResponseEntity<GetUsuarioDto> nuevoPropietario(@RequestPart("json") CreateUsuarioDto newUser, @RequestPart("file") MultipartFile file) {
+    public ResponseEntity<GetUsuarioDto> nuevoPropietario(@Valid @RequestPart("json") CreateUsuarioDto newUser, @RequestPart("file") MultipartFile file) throws IOException {
         Usuario saved = usuarioEntityService.save(newUser, file);
 
         if (saved == null)

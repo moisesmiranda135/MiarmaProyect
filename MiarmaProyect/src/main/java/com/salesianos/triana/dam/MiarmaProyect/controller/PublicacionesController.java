@@ -10,6 +10,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/post")
 @RequiredArgsConstructor
@@ -19,8 +22,8 @@ public class PublicacionesController {
 
     @PostMapping("/")
     public ResponseEntity<?> create(@RequestPart("file") MultipartFile file,
-                                    @RequestPart("json") CreatePublicacionesDto newProduct,
-                                    @AuthenticationPrincipal Usuario u) {
+                                    @Valid @RequestPart("json") CreatePublicacionesDto newProduct,
+                                    @AuthenticationPrincipal Usuario u) throws IOException {
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(publicacionesService.save(newProduct, file, u));

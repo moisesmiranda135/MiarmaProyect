@@ -5,17 +5,21 @@ import com.salesianos.triana.dam.MiarmaProyect.errors.exception.FileNotFoundExce
 import com.salesianos.triana.dam.MiarmaProyect.errors.exception.StorageException;
 import com.salesianos.triana.dam.MiarmaProyect.services.StorageService;
 import com.salesianos.triana.dam.MiarmaProyect.utils.MediaTypeUrlResource;
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.io.InputStream;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,6 +83,54 @@ public class FileSystemStorageService implements StorageService {
         return newFilename;
 
     }
+
+    @Override
+    public String storeScale(MultipartFile file) throws IOException {
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        String newFilename = "";
+        try {
+            // Si el fichero está vacío, excepción al canto
+            if (file.isEmpty())
+                throw new StorageException("El fichero subido está vacío");
+
+            newFilename = filename;
+            while(Files.exists(rootLocation.resolve(newFilename))) {
+                // Tratamos de generar uno nuevo
+                String extension = StringUtils.getFilenameExtension(newFilename);
+                String name = newFilename.replace("."+extension,"");
+
+                String suffix = Long.toString(System.currentTimeMillis());
+                suffix = suffix.substring(suffix.length()-6);
+
+                newFilename = name + "_" + suffix + "." + extension;
+
+            }
+
+            try (InputStream inputStream = file.getInputStream()) {
+                Files.copy(inputStream, rootLocation.resolve(newFilename),
+                        StandardCopyOption.REPLACE_EXISTING);
+            }
+
+
+
+        } catch (IOException ex) {
+            throw new StorageException("Error en el almacenamiento del fichero: " + newFilename, ex);
+        }
+
+        byte[] byteImg = Files.readAllBytes(Paths.get(String.valueOf(file)));
+
+        BufferedImage original = ImageIO.read(new ByteArrayInputStream(byteImg));
+
+        BufferedImage scaled = Scalr.resize(original, 128);
+
+        OutputStream out = Files.newOutputStream(Paths.get((String.valueOf(file))));
+
+        ImageIO.write(scaled, file.getContentType(), out);
+
+        return filename;
+
+    }
+
 
     @Override
     public Stream<Path> loadAll() {

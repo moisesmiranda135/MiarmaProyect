@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,7 @@ public class PublicacionesServiceImpl implements PublicacionesService {
     private final UsuarioRepository usuarioRepository;
 
     @Override
-    public CreatePublicacionesDto save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file, Usuario u) {
+    public CreatePublicacionesDto save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file, Usuario u) throws IOException {
 
         String filename = storageService.store(file);
 

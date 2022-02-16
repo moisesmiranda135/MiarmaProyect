@@ -2,6 +2,7 @@ package com.salesianos.triana.dam.MiarmaProyect.users.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 @Getter
