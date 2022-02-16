@@ -1,0 +1,12 @@
+{
+    "nombre":"Paco Pepe",
+    "apellidos":"Andujar",
+    "email":"supepito@gmail.com",
+    "password":"12345",
+    "password2":"12345",
+    "nickName":"pepeypaco",
+    "presentacion":"hola a todos",
+    "public": true,
+    "fechaNacimiento": "1990-03-01"
+    
+}
