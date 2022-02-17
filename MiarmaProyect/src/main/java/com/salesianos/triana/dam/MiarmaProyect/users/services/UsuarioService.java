@@ -2,9 +2,12 @@ package com.salesianos.triana.dam.MiarmaProyect.users.services;
 
 
 
-import com.salesianos.triana.dam.MiarmaProyect.dto.CreatePublicacionesDto;
+import com.salesianos.triana.dam.MiarmaProyect.dto.GetPeticionesDto;
+import com.salesianos.triana.dam.MiarmaProyect.dto.PeticionesDtoConverter;
+import com.salesianos.triana.dam.MiarmaProyect.errors.exception.ListEntityNotFoundException;
 import com.salesianos.triana.dam.MiarmaProyect.errors.exception.SingleEntityNotFoundException;
-import com.salesianos.triana.dam.MiarmaProyect.model.Publicaciones;
+import com.salesianos.triana.dam.MiarmaProyect.model.Seguimiento;
+import com.salesianos.triana.dam.MiarmaProyect.repos.SeguimientoRepository;
 import com.salesianos.triana.dam.MiarmaProyect.services.StorageService;
 import com.salesianos.triana.dam.MiarmaProyect.services.base.BaseService;
 import com.salesianos.triana.dam.MiarmaProyect.users.dto.CreateUsuarioDto;
@@ -30,6 +33,7 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service("usuarioDetailsService")
 @RequiredArgsConstructor
@@ -38,6 +42,8 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
     private final PasswordEncoder passwordEncoder;
     private final StorageService storageService;
     private final UsuarioDtoConverter converter;
+    private final PeticionesDtoConverter peticionesDtoConverter;
+    private final SeguimientoRepository seguimientoRepository;
 
 
     @Override
@@ -125,6 +131,51 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
             repositorio.save(u);
             return converter.convertUsuarioToCreateUsuarioDto(u);
         }).orElseThrow(() -> new SingleEntityNotFoundException(usuario.getId().toString(), Usuario.class));
+
+    }
+
+
+    public void enviarPeticion(String nickname, Usuario u) {
+
+        Optional<Usuario> usuarioASeguir = repositorio.findFirstByNickName(nickname);
+
+        if(usuarioASeguir.isEmpty()){
+                throw new SingleEntityNotFoundException(nickname.toString(),Usuario.class);
+        }else{
+
+            Seguimiento s =  Seguimiento.builder()
+                    .peticiones(u)
+                    .aSeguir(usuarioASeguir.get())
+                    .build();
+
+            seguimientoRepository.save(s);
+            usuarioASeguir.get().addToPeticiones(s);
+            repositorio.save(usuarioASeguir.get());
+        }
+    }
+
+
+    public List<GetPeticionesDto> findAllPeticiones(Usuario u) {
+
+        List<Seguimiento> data = u.getListaPeticiones();
+
+        if (data.isEmpty()) {
+            throw new ListEntityNotFoundException(Seguimiento.class);
+        } else {
+            List<GetPeticionesDto> result =
+                    data.stream()
+                            .map(peticionesDtoConverter::convertPeticionesToGetPeticionesDto)
+                            .collect(Collectors.toList());
+            return result;
+        }
+    }
+
+    public void aceptarPeticion(Long id, Usuario u) {
+
+        Optional<Seguimiento> solicitud = seguimientoRepository.findById(u.getListaPeticiones().get(Math.toIntExact(id)).getId());
+
+        u.removeToPeticiones(solicitud.get());
+        repositorio.save(u);
 
     }
 

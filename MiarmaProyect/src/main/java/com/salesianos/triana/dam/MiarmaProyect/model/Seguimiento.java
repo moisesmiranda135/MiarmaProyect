@@ -22,5 +22,6 @@ public class Seguimiento {
     private Usuario peticiones;
 
     @ManyToOne
-    private Usuario seguidos;
+    private Usuario aSeguir;
+
 }

@@ -43,5 +43,21 @@ public class UserController {
         return ResponseEntity.ok().body(usuarioEntityService.editProfile(dto, file, u));
     }
 
+    @PostMapping("/follow/{nick}")
+    public ResponseEntity<?> enviarSolicitud (@PathVariable String nick, @AuthenticationPrincipal Usuario u) {
+        usuarioEntityService.enviarPeticion(nick, u);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/follow/list")
+    public ResponseEntity<?> list(@AuthenticationPrincipal Usuario u) {
+        return ResponseEntity.ok(usuarioEntityService.findAllPeticiones(u));
+    }
+
+    @PostMapping("/follow/accept/{id}")
+    public ResponseEntity<?> aceptarSolicitud (@PathVariable Long id, @AuthenticationPrincipal Usuario u) {
+        usuarioEntityService.aceptarPeticion(id, u);
+        return ResponseEntity.ok().build();
+    }
 
 }

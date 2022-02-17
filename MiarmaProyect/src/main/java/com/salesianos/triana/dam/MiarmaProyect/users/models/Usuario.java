@@ -49,13 +49,38 @@ public class Usuario implements UserDetails {
     @OneToMany (fetch = FetchType.EAGER, mappedBy = "usuario")
     private List<Publicaciones> publicaciones = new ArrayList<>();
 
-    @OneToMany( mappedBy = "peticiones")
+    @OneToMany
     private List<Seguimiento> listaPeticiones = new ArrayList<>();
 
-    @OneToMany( mappedBy = "seguidos")
-    private List<Seguimiento> listaSeguidos = new ArrayList<>();
+    @OneToMany
+    private List<Seguimiento> aSeguirlo = new ArrayList<>();
+
 
     private boolean isPublic;
+
+
+
+    //HELPPERS
+
+    //Seguidores
+    public void addToPeticiones(Seguimiento s){
+        listaPeticiones.add(s);
+    }
+
+    public void removeToPeticiones(Seguimiento s){
+
+        listaPeticiones.remove(s);
+    }
+
+    //Aseguir
+    public void addToASeguir(Seguimiento s){
+        aSeguirlo.add(s);
+    }
+
+    public void removeToASeguir(Seguimiento s){
+
+        aSeguirlo.remove(s);
+    }
 
 
     @Override
