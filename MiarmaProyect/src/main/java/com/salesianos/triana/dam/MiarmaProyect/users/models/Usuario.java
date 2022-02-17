@@ -55,32 +55,12 @@ public class Usuario implements UserDetails {
     @OneToMany
     private List<Seguimiento> aSeguirlo = new ArrayList<>();
 
+    @ManyToMany
+    private List<Usuario> seguidores = new ArrayList<>();
+
 
     private boolean isPublic;
 
-
-
-    //HELPPERS
-
-    //Seguidores
-    public void addToPeticiones(Seguimiento s){
-        listaPeticiones.add(s);
-    }
-
-    public void removeToPeticiones(Seguimiento s){
-
-        listaPeticiones.remove(s);
-    }
-
-    //Aseguir
-    public void addToASeguir(Seguimiento s){
-        aSeguirlo.add(s);
-    }
-
-    public void removeToASeguir(Seguimiento s){
-
-        aSeguirlo.remove(s);
-    }
 
 
     @Override

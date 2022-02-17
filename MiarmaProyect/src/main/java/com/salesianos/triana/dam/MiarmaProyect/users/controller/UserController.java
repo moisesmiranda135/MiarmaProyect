@@ -60,4 +60,10 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    @DeleteMapping("/follow/decline/{id}")
+    public ResponseEntity<?> deletePublicacion(@PathVariable Long id, @AuthenticationPrincipal Usuario u) {
+        usuarioEntityService.eliminarPeticion(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }

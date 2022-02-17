@@ -179,11 +179,14 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 
     public void aceptarPeticion(Long id, Usuario u) {
 
-        Optional<Seguimiento> solicitud = seguimientoRepository.findById(u.getListaPeticiones().get(Math.toIntExact(id)).getId());
+        Optional<Seguimiento> solicitud = seguimientoRepository.findById(id);
 
-        u.removeToPeticiones(solicitud.get());
         repositorio.save(u);
 
+    }
+
+    public void eliminarPeticion(Long id) {
+        seguimientoRepository.deleteById(id);
     }
 
 
