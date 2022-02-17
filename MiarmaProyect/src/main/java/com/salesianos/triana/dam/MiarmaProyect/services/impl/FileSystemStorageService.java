@@ -84,6 +84,66 @@ public class FileSystemStorageService implements StorageService {
 
     }
 
+    @Override
+    public String storeScale(MultipartFile file) {
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        String newFilename = "";
+        try {
+            if (file.isEmpty())
+                throw new StorageException("El fichero subido está vacío");
+
+            newFilename = filename;
+            while(Files.exists(rootLocation.resolve(newFilename))) {
+                // Tratamos de generar uno nuevo
+                String extension = StringUtils.getFilenameExtension(newFilename);
+                String name = newFilename.replace("."+extension,"");
+
+                String suffix = Long.toString(System.currentTimeMillis());
+                suffix = suffix.substring(suffix.length()-6);
+
+                newFilename = name + "_" + suffix + "." + extension;
+
+            }
+
+            try (InputStream inputStream = file.getInputStream()) {
+                Files.copy(inputStream, rootLocation.resolve(newFilename),
+                        StandardCopyOption.REPLACE_EXISTING);
+            }
+
+
+
+        } catch (IOException ex) {
+            throw new StorageException("Error en el almacenamiento del fichero: " + newFilename, ex);
+        }
+
+        String extension = StringUtils.getFilenameExtension(filename);
+
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(file.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        BufferedImage scale = Scalr.resize(img, 1024);
+
+        OutputStream out = null;
+        try {
+            out = Files.newOutputStream(load(filename));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            ImageIO.write(scale,extension,out);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return newFilename;
+
+    }
+
 
     @Override
     public Stream<Path> loadAll() {

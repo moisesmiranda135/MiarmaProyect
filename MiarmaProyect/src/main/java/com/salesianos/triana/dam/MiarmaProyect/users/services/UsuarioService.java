@@ -31,6 +31,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -149,15 +150,21 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
                     .build();
 
             seguimientoRepository.save(s);
-            usuarioASeguir.get().addToPeticiones(s);
-            repositorio.save(usuarioASeguir.get());
+
+            List<Seguimiento> listaPeticiones = repositorio.findById(u.getId()).get().getListaPeticiones();
+            List<Seguimiento> listaASeguir = repositorio.findById(u.getId()).get().getASeguirlo();
+
+            listaPeticiones.add(s);
+            listaASeguir.add(s);
+
+            repositorio.save(u);
         }
     }
 
 
     public List<GetPeticionesDto> findAllPeticiones(Usuario u) {
 
-        List<Seguimiento> data = u.getListaPeticiones();
+        List<Seguimiento> data = seguimientoRepository.allPeticiones(u.getId());
 
         if (data.isEmpty()) {
             throw new ListEntityNotFoundException(Seguimiento.class);

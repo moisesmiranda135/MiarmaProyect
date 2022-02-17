@@ -15,6 +15,7 @@ import com.salesianos.triana.dam.MiarmaProyect.users.repos.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -37,29 +38,66 @@ public class PublicacionesServiceImpl implements PublicacionesService {
     public CreatePublicacionesDto save(CreatePublicacionesDto createPublicacionesDto, MultipartFile file, Usuario u) throws IOException {
 
         String filename = storageService.store(file);
+        String extension = StringUtils.getFilenameExtension(filename);
 
-        String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-                .path("/download/")
-                .path(filename)
-                .toUriString();
+        if (extension.equals("mp4") || extension.equals("avi") || extension.equals("mkv") || extension.equals("mov")){
 
-        Publicaciones p = repository.save(Publicaciones.builder()
-                .id(createPublicacionesDto.getId())
-                .titulo(createPublicacionesDto.getTitulo())
-                .descripcion(createPublicacionesDto.getDescripcion())
-                .isPublic(createPublicacionesDto.isPublic())
-                .usuario(u)
-                .imagen(uri)
-                .build());
+            String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/download/")
+                    .path(filename)
+                    .toUriString();
 
-        return converter.convertPublicacionesToCreatePublicacionesDto(Publicaciones.builder()
-                        .id(p.getId())
-                        .titulo(p.getTitulo())
-                        .descripcion(p.getDescripcion())
-                        .imagen(p.getImagen())
-                        .isPublic(p.isPublic())
-                .usuario(p.getUsuario())
-                .build());
+            Publicaciones p = repository.save(Publicaciones.builder()
+                    .id(createPublicacionesDto.getId())
+                    .titulo(createPublicacionesDto.getTitulo())
+                    .descripcion(createPublicacionesDto.getDescripcion())
+                    .isPublic(createPublicacionesDto.isPublic())
+                    .usuario(u)
+                    .imagen(uri)
+                    .build());
+
+            return converter.convertPublicacionesToCreatePublicacionesDto(Publicaciones.builder()
+                    .id(p.getId())
+                    .titulo(p.getTitulo())
+                    .descripcion(p.getDescripcion())
+                    .imagen(p.getImagen())
+                    .isPublic(p.isPublic())
+                    .usuario(p.getUsuario())
+                    .build());
+
+
+        }else {
+            String filenameScale = storageService.storeScale(file);
+
+            String uri = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/download/")
+                    .path(filename)
+                    .toUriString();
+
+            String uriScale = ServletUriComponentsBuilder.fromCurrentContextPath()
+                    .path("/download/")
+                    .path(filenameScale)
+                    .toUriString();
+
+            Publicaciones p = repository.save(Publicaciones.builder()
+                    .id(createPublicacionesDto.getId())
+                    .titulo(createPublicacionesDto.getTitulo())
+                    .descripcion(createPublicacionesDto.getDescripcion())
+                    .isPublic(createPublicacionesDto.isPublic())
+                    .usuario(u)
+                    .imagen(uriScale)
+                    .build());
+
+            return converter.convertPublicacionesToCreatePublicacionesDto(Publicaciones.builder()
+                    .id(p.getId())
+                    .titulo(p.getTitulo())
+                    .descripcion(p.getDescripcion())
+                    .imagen(p.getImagen())
+                    .isPublic(p.isPublic())
+                    .usuario(p.getUsuario())
+                    .build());
+
+        }
     }
 
     @Override
