@@ -53,9 +53,9 @@ Funciona correctamente
 - GET /follow/list
 Funciona correctamente
 - POST /follow/accept/{id}
-Intentado pero tiene errores y no funciona
+Funciona pero no puedo borrar la solicitud
 - POST /follow/decline/{id}
-Intentado pero tiene errores y no funciona
+Intentado pero tiene errores y no funciona (esta el código hecho)
 
 
 
