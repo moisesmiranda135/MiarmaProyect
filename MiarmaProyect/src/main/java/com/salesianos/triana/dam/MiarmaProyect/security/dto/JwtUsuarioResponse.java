@@ -1,8 +1,10 @@
 package com.salesianos.triana.dam.MiarmaProyect.security.dto;
 
+import com.salesianos.triana.dam.MiarmaProyect.users.models.Usuario;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor

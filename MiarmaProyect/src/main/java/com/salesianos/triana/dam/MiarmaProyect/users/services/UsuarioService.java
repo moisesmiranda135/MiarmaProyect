@@ -181,8 +181,14 @@ public class UsuarioService extends BaseService<Usuario, Long, UsuarioRepository
 
         Optional<Seguimiento> solicitud = seguimientoRepository.findById(id);
 
+        Usuario usuarioAAñadir = solicitud.get().getPeticiones();
+
+        List<Usuario> usuarioAñadido =  repositorio.findById(u.getId()).get().getSeguidores();
+
+        usuarioAñadido.add(usuarioAAñadir);
         repositorio.save(u);
 
+        //Creo que funciona pero no puedo borrar la solicitud, salta un fallo de violación en h2 que he intentado solucionar pero no lo he conseguido
     }
 
     public void eliminarPeticion(Long id) {
