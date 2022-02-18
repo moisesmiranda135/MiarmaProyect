@@ -1,0 +1,665 @@
+{
+	"info": {
+		"_postman_id": "ce5ce01c-83d9-48d5-9dab-4ef919007237",
+		"name": "MiArma Proyect",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Publicaciones",
+			"item": [
+				{
+					"name": "Nueva Publicación (foto)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MTcyOTE0LCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.kS4fTzmX8533D6E6qP8feQLJqepPkSK4csNQ4-ujqVE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/images/moises.png"
+								},
+								{
+									"key": "json",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/jsons/publicacion.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/post/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Nueva Publicación (video)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MTcyOTE0LCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.kS4fTzmX8533D6E6qP8feQLJqepPkSK4csNQ4-ujqVE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/video/VID-20191007-WA0029.mp4"
+								},
+								{
+									"key": "json",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/jsons/publicacion2.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/post/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Publicación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MTIzNTg1LCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.X8QbHOxbFEV2On2RCKA3na2hqi_PDl-6qQ6wYF0toOQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/Moi/Documents/2 DAM/MiarmaProyect/assets/images/cocacola.jpg"
+								},
+								{
+									"key": "json",
+									"type": "file",
+									"src": "/C:/Users/Moi/Documents/2 DAM/MiarmaProyect/assets/jsons/publicacion2.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/post/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Publicación",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MTIzNTg1LCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.X8QbHOxbFEV2On2RCKA3na2hqi_PDl-6qQ6wYF0toOQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/post/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener Todas las Públicas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MDM0NDcyLCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.zZw-O2MHpZnY7-RkVmI5ytKSPAzw5h5mYup_GFjrq7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/post/public",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"public"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/post/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"post",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener por usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/post/{nick}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"post",
+								"{nick}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener usuario logueado",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MDM0NDcyLCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.zZw-O2MHpZnY7-RkVmI5ytKSPAzw5h5mYup_GFjrq7w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/post/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"post",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"Admintoken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"moisesmiranda135@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login user2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.collectionVariables.set(\"Admintoken\", jsonData.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"supepito@gmail.com\",\r\n    \"password\":\"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/images/moises.png"
+								},
+								{
+									"key": "json",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/jsons/usuario.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register user 2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/images/cocacola.jpg"
+								},
+								{
+									"key": "json",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/jsons/usuario2.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Sobre mi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjQ1MjcyNTYwLCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.TTeT-df3rFXoZsJeS2EoEPdt9sOdVO4y4tuP-AUn8Vg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Editar información de usuario",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MTI0OTMwLCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.C_lTSsvZQGco51I_TWbNFmUYoVQc7vGxKxyzk7S87dQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/images/cocacola.jpg"
+								},
+								{
+									"key": "json",
+									"type": "file",
+									"src": "/C:/Users/miranda.comoi20/Documents/MiarmaProyect/assets/jsons/usuario.json"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/profile/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"profile",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obtener información del usuario Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9000/profile/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9000",
+							"path": [
+								"profile",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enviar Solicitud",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNjQ1MjU3NTM2LCJub21icmUiOiJQYWNvIFBlcGUiLCJhcGVsbGlkb3MiOiJBbmR1amFyIiwicm9sIjp0cnVlfQ.Rk2BLnxAETef_huuJUk6ImJG240AiTDXjtjhLq5Hxu4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/follow/moimiranda98",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"follow",
+								"moimiranda98"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Aceptar Solicitud",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjQ1MjcyNTYwLCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.TTeT-df3rFXoZsJeS2EoEPdt9sOdVO4y4tuP-AUn8Vg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/follow/accept/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"follow",
+								"accept",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar una solicitud",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjQ1MjcxNTQ3LCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.QiQnwlXSoyM-Hnx1niMI8SY8HjZyPlEe2zC4kYnoI2I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/follow/decline/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"follow",
+								"decline",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver lista Solicitudes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyIiwiaWF0IjoxNjQ1MjcyNTYwLCJub21icmUiOiJNb2lzw6lzIiwiYXBlbGxpZG9zIjoiTWlyYW5kYSBDb3JyYWxlcyIsInJvbCI6dHJ1ZX0.TTeT-df3rFXoZsJeS2EoEPdt9sOdVO4y4tuP-AUn8Vg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/follow/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"follow",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "Admintoken",
+			"value": ""
+		}
+	]
+}
