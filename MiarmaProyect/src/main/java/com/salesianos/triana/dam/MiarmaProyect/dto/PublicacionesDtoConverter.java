@@ -14,6 +14,7 @@ public class PublicacionesDtoConverter {
                 .imagen(p.getImagen())
                 .isPublic(p.isPublic())
                 .propietario_nickName(p.getUsuario().getNickName())
+                .propietario_avatar(p.getUsuario().getAvatar())
                 .build();
 
     }

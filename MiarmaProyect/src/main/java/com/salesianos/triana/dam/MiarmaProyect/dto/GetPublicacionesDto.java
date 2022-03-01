@@ -14,5 +14,6 @@ public class GetPublicacionesDto {
     private String descripcion;
     private String imagen;
     private String propietario_nickName;
+    private String propietario_avatar;
     private boolean isPublic;
 }
